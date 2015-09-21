@@ -1,0 +1,22 @@
+{
+  "name": "ceh-solr",
+  "version": "1.0.0",
+  "author": "Centre for Ecology & Hydrology",
+  "license": "GPL-2.0",
+  "summary": "This is the solr module, it deploys an installation of solr in tomcat",
+  "source": "https://github.com/NERC-CEH/puppet-solr",
+  "project_page": "https://github.com/NERC-CEH/puppet-solr",
+  "issues_url": "https://github.com/NERC-CEH/puppet-solr/issues",
+  "tags": ["tomcat", "solr"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem": "Ubuntu",
+    "operatingsystemrelease": [ "12.04", "14.04" ]
+    }
+   ],
+  "dependencies": [
+    { "name": "ceh/authbind", "version_requirement": ">=1.0.0 <2.0.0" },
+    { "name": "ceh/nexus", "version_requirement": ">=1.0.0 <2.0.0" },
+    { "name": "ceh/tomcat", "version_requirement": ">=1.0.0 <2.0.0" }
+  ]
+}
