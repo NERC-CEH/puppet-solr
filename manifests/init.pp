@@ -9,6 +9,10 @@
 # [*slf4j_version*] Version of slf4j to deploy
 # [*log4j_version*] Version of log4j to deploy
 # [*jolokia_port*]  The port number to enable jolokia monitoring on
+# [*apache_nexus*]  Nexus repository where apache artifacts can be grabbed from
+# [*apache_repo*]   The repo in the apache nexus instance to get the artifacts from
+# [*central_nexus*] Nexus repository where general artifacts can be grabbed from
+# [*central_repo*]  The repo in the general nexus instance to get artifacts from
 #
 class solr (
   $port          = '7000',
@@ -17,8 +21,11 @@ class solr (
   $slf4j_version = '1.6.6',
   $log4j_version = '1.2.16',
   $jolokia_port  = undef,
+  $apache_nexus  = 'https://repository.apache.org/service/local',
+  $apache_repo   = 'public',
+  $central_nexus = undef,
+  $central_repo  = undef,
 ) {
-
   include tomcat
 
   tomcat::instance { 'solr' :
@@ -29,11 +36,18 @@ class solr (
     },
   }
 
+  Tomcat::Deployment {
+    nexus => $central_nexus,
+    repo  => $central_repo,
+  }
+
   tomcat::deployment { 'Deploy solr':
     tomcat   => 'solr',
     group    => 'org.apache.solr',
     artifact => 'solr',
     version  => $version,
+    nexus    => $apache_nexus,
+    repo     => $apache_repo,
   }
 
   tomcat::instance::provide { 'solr/slf4j-api':

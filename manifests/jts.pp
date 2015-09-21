@@ -11,9 +11,11 @@ class solr::jts (
 
   #Spatial extensions for solr
   tomcat::instance::provide { 'solr/jts':
-    tomcat    => 'solr',
+    tomcat   => 'solr',
     group    => 'com.vividsolutions',
     artifact => 'jts',
     version  => $version,
+    nexus    => $solr::central_nexus,
+    repo     => $solr::central_repo,
   }
 }
