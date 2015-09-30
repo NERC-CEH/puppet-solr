@@ -15,7 +15,7 @@
 # [*central_repo*]  The repo in the general nexus instance to get artifacts from
 #
 class solr (
-  $port          = '7000',
+  $port          = 7000,
   $version       = '4.6.0',
   $solr_home     = '/home/tomcat7/solr_home',
   $slf4j_version = '1.6.6',
